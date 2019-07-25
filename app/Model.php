@@ -7,7 +7,12 @@ use Illuminate\Support\Str;
 
 class Model extends BaseModel
 {
+    
+    
     public $incrementing = false;
+
+    // allows for our models to have mass assignment by default
+    protected $guarded = []; 
 
     protected static function boot()
     {
