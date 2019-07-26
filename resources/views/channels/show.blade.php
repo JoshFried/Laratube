@@ -61,6 +61,14 @@
                             <p class="text-center">{{ $channel->description }}</p>
                         </div>
 
+                        <div class="text-center">
+                            <subscribe-button inline-template :subscriptions="{{ $channel->subscriptions }}">
+                                <button class="btn btn-danger" @click="toggleSubscription">
+                                    Subscribe
+                                </button>
+                            </subscribe-button>
+                        </div>
+                        
                         @if ($channel->editable())
                             <input onchange="document.getElementById('update-channel-form').submit()" type="file"
                             name="image" id="image" style="display:none">

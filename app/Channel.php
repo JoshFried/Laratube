@@ -34,4 +34,8 @@ class Channel extends Model implements HasMedia
         }
         return $this->user_id === auth()->user()->id; 
     }
+
+    public function subscriptions() {
+        return $this->hasMany(Subscription::class); 
+    }
 }

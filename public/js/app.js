@@ -31857,6 +31857,9 @@ module.exports = g;
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
+__webpack_require__(/*! ./components/subscribe-button */ "./resources/js/components/subscribe-button.js");
+
 var app = new Vue({
   el: '#app'
 });
@@ -31889,6 +31892,34 @@ if (token) {
 
 /***/ }),
 
+/***/ "./resources/js/components/subscribe-button.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/subscribe-button.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+Vue.component('subscribe-button', {
+  methods: {
+    toggleSubscription: function toggleSubscription() {
+      if (!__auth()) {
+        alert("Please login to subscribe");
+      }
+    }
+  },
+  props: {
+    subscriptions: {
+      type: Array,
+      required: true,
+      "default": function _default() {
+        return [];
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -31907,8 +31938,8 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\laratube\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\laratube\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\Laratube\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\Laratube\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
