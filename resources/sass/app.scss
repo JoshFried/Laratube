@@ -7,31 +7,31 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.btn-info { 
+.btn-info {
     color: #fff;
 }
 
-.channel-avatar{ 
+.channel-avatar {
     width: 100px;
     height: 100px;
-    border: 1px solid rgba(0, 0,  0, 0.125);
-    position: relative; 
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    position: relative;
     cursor: pointer;
 
-    .channel-avatar-overlay{
+    .channel-avatar-overlay {
         display: none;
     }
 
     &:hover {
-        
-    .channel-avatar-overlay{
-        position: absolute;
-        height: 100px; 
-        width: 100px; 
-        background-color: rgba(0, 0,  0, 0.4);
-        display: flex; 
-        justify-content: center;
-        align-items: center;
-    }
+
+        .channel-avatar-overlay {
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 }

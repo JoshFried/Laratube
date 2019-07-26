@@ -21,7 +21,8 @@
                                                 <path d="M30,20.5c-6.617,0-12,5.383-12,12s5.383,12,12,12s12-5.383,12-12S36.617,20.5,30,20.5z M30,42.5c-5.514,0-10-4.486-10-10   s4.486-10,10-10s10,4.486,10,10S35.514,42.5,30,42.5z" data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff"/>
                                                 <path d="M52,19.5c-2.206,0-4,1.794-4,4s1.794,4,4,4s4-1.794,4-4S54.206,19.5,52,19.5z M52,25.5c-1.103,0-2-0.897-2-2s0.897-2,2-2   s2,0.897,2,2S53.103,25.5,52,25.5z" data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff"/>
                                         </g></g> </svg>
-                                </div>
+                                    </div>
+                                    <img src="{{ $channel->media()->first()->getFullUrl('thumb') }}" alt="">
                             </div>
                         </div>
 

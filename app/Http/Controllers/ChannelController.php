@@ -69,7 +69,17 @@ class ChannelController extends Controller
      */
     public function update(Request $request, Channel $channel)
     {
-        //
+        if ($request->hasFile('image')) {
+
+            // first clear previous avatar
+            $channel->clearMediaCollection('images');
+
+            //upload new avatar to db
+            $channel->addMediaFromRequest('image')
+            ->toMediaCollection('images'); 
+        }
+
+        return redirect()->back(); 
     }
 
     /**
