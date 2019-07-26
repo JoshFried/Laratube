@@ -4,9 +4,21 @@ namespace Laratube\Http\Controllers;
 
 use Laratube\Channel;
 use Illuminate\Http\Request;
+use Laratube\Http\Requests\Channels\UpdateChannelRequest;
 
 class ChannelController extends Controller
 {
+
+    /* validates if current user is the owner of channel
+        redirects users to login page if their not logged in 
+        sends 403 error to users if theyre logged in, but arent the channel owner
+    */ 
+    public function __construct()
+    {
+        $this->middleware(['auth'])->only('update');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -67,7 +79,7 @@ class ChannelController extends Controller
      * @param  \Laratube\Channel  $channel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Channel $channel)
+    public function update(UpdateChannelRequest $request, Channel $channel)
     {
         if ($request->hasFile('image')) {
 
@@ -79,7 +91,12 @@ class ChannelController extends Controller
             ->toMediaCollection('images'); 
         }
 
-        return redirect()->back(); 
+        $channel->update([
+            'name' => $request->name, 
+            'description' => $request->description
+        ]);
+
+        return redirect()->back();
     }
 
     /**

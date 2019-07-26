@@ -27,4 +27,11 @@ class Channel extends Model implements HasMedia
         ->width(100)
         ->height(100);
     }
+
+    public function editable() { 
+        if (!auth()->check()){
+            return false; 
+        }
+        return $this->user_id === auth()->user()->id; 
+    }
 }
