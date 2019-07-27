@@ -2,9 +2,9 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use Laratube\Subscription;
 use Faker\Generator as Faker;
 use Laratube\User;
+use Laratube\Subscription;
 use Laratube\Channel;
 
 $factory->define(Subscription::class, function (Faker $faker) {
