@@ -1,16 +1,35 @@
+import axios from 'axios';
+
+
 Vue.component('channel-uploads', {
+
+    props: {
+        channel: {
+            type: Object,
+            required: true, 
+            default: () => ({})
+        }
+    },
+
     data: () => ({
-        selected: false
+        selected: false,
+        videos: [],
     }), 
+
 
     methods: { 
         upload() {
 
-            this.selected = true;
+            this.videos = Array.from(this.$refs.videos.files)
 
-            const videos = this.$refs.videos.files; 
+            const uploaders = this.videos.map(video => {
+                const form = new FormData()
 
-            console.log(videos); 
+                form.append('video', video)
+                form.append('title', video.name)
+                
+                return axios.post(`/channels/${this.channel.id}/videos`, form)
+            })
         }
     }
 })
