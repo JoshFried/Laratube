@@ -19,6 +19,8 @@ class UploadVideoController extends Controller
             'title' => request()->title,
             'path' => request()->video->store("channel/{$channel->id}"),
             ]);
+
+            
         $this.dispatch(new ConvertForStreaming($video));
 
         return $video;
