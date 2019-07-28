@@ -95,8 +95,7 @@ class ChannelController extends Controller
             'name' => $request->name, 
             'description' => $request->description
         ]);
-
-        dd($channel->image());
+        
         return redirect()->back();
     }
 

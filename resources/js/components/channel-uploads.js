@@ -21,8 +21,8 @@ Vue.component('channel-uploads', {
 
 
     methods: { 
-        upload() {
 
+        upload() {
             this.selected = true;
             this.videos = Array.from(this.$refs.videos.files); 
 
@@ -41,6 +41,7 @@ Vue.component('channel-uploads', {
                         this.progress[video.name] = Math.ceil((event.loaded / event.total)* 100);
                         this.$forceUpdate();
                     }
+                    
                 }); 
             })
         }

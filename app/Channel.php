@@ -16,12 +16,13 @@ class Channel extends Model implements HasMedia
 
     public function image() {
         if ($this->media->first()) {
-            return $this->media()->first()->getUrl('thumb');
+            return $this->media->first()->getFullUrl('thumb');
         }
+        return null; 
     }
 
 
-    public function registerMediaConversions(Media $media = null)
+    public function registerMediaConversions(?Media $media = null)
     {
         $this->addMediaConversion('thumb')
         ->width(100)
