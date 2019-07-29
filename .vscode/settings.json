@@ -1,0 +1,6 @@
+{
+    "terminal.integrated.fontFamily": "\"Fira Code\", monospace",
+    "editor.fontFamily": "Dank Mono",
+    "editor.fontLigatures": true,
+    "editor.lineHeight": 30
+}

@@ -24,6 +24,7 @@ Route::resource('channels', 'ChannelController');
 
 
 Route::get('videos/{video}', [VideoController::class, 'show']);
+Route::put('videos/{video}', [VideoController::class, 'updateViews']);
 
 
 Route::group(['middleware' => ['auth']], function () {
