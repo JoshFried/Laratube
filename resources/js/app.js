@@ -2,13 +2,12 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-require('./components/subscribe-button');
+
+Vue.config.ignoredElements = ['video-js']
+Vue.component('subscribe-button', require('./components/subscribe-button.vue').default)
+
 require('./components/channel-uploads');
 
-
-Vue.config.ignoredElements = [
-    'video-js'
-]
 
 const app = new Vue({
     el: '#app',

@@ -1,8 +1,32 @@
-import numeral from 'numeral';
-import axios from 'axios';
+
+<template>
+    <button @click="toggleSubscription" class="btn btn-danger">
+        {{ owner ? '' : subscribed ? 'Unsubscribe' : 'Subscribe' }} {{ count }} {{ owner ? 'Subscribers' : '' }}
+    </button>
+</template>
 
 
-Vue.component('subscribe-button', {
+<script>
+import numeral from 'numeral'
+export default {
+    
+    props: {
+        channel: {
+            type: Object,
+            required: true,
+            default: () => ({})
+        },
+        initialSubscriptions: {
+            type: Array,
+            required: true,
+            default: () => []
+        },
+    },
+        data: function () { 
+        return {
+            subscriptions: this.initialSubscriptions
+        }
+    }, 
 
     computed: {
         subscribed() {
@@ -53,24 +77,5 @@ Vue.component('subscribe-button', {
             }
         }
     },
-    props: {
-        channel: {
-            type: Object,
-            required: true,
-            default: () => ({})
-        },
-        initialSubscriptions: {
-            type: Array,
-            required: true,
-            default: () => []
-        },
-    },
-
-    data: function () { 
-        return {
-            subscriptions: this.initialSubscriptions
-        }
-    }
-
-
-});
+}
+</script>
