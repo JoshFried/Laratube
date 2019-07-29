@@ -74,6 +74,10 @@ export default {
         entity_owner: {
             required: 'true', 
             default: () => ({})
+        },
+        entity_id: {
+            required: 'true', 
+            default: () => ({})
         }
     }, 
 
@@ -120,6 +124,24 @@ export default {
             } 
             if ((type === 'up' && this.upvoted)|| (type === 'down' && this.downvoted)) return
 
+            axios.post(`/votes/${this.entity_id}/${type}`)
+                .then(({ data }) => {
+                    if (this.upvoted || this.downvoted) {
+                        this.votes = this.votes.map(v => {
+                            if (v.user_id === __auth().id) {
+                                return data
+                            } else {
+                                return v
+                            }
+
+                        })
+                    } else {
+                        this.votes = [
+                            ...this.votes, 
+                            data
+                        ]
+                    }
+                })
         }
     },
 }

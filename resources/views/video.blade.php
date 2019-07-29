@@ -36,7 +36,7 @@
 
                             </div>
                         
-                            <votes :default_votes='{{ $video->votes }}' entity_owner="{{ $video->channel->user_id }}" > </votes>
+                            <votes :default_votes='{{ $video->votes }}' entity_id="{{ $video->id }}" entity_owner="{{ $video->channel->user_id }}" > </votes>
                     
                         </div>
                         <hr>
