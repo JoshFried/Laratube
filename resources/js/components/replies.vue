@@ -6,14 +6,16 @@
                 <small>Add comment</small>
             </button>
         </div>
-        <div class="media mt-3" v-for="reply in replies.data">
+        <div class="media my-3" v-for="reply in replies.data">
             <a class="mr-3" href="#">
                 <avatar :username="reply.user.name" :size="30" class="mr-3"></avatar>
             </a>
             <div class="media-body">
                 <h6 class="mt-0">{{ reply.user.name }}</h6>
                 <small>{{ reply.body }}</small>
+            <votes :default_votes="reply.votes" :entity_id="reply.id" :entity_owner="reply.user.id"></votes>
             </div>
+
         </div>
         <div class="text-center" v-if="comment.repliesCount > 0 && replies.next_page_url">
             <button class="btn btn-info btn-sm" @click="fetchReplies">Load Replies</button>
@@ -58,4 +60,5 @@
             }
         },
     }
+
 </script>

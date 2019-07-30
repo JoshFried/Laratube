@@ -7,7 +7,7 @@ class Comment extends Model
 {
 
     //tells laravel which relationships to EAGER load
-    protected $with = ['user'];
+    protected $with = ['user', 'votes'];
 
     protected $appends = ['repliesCount'];
 
@@ -27,5 +27,9 @@ class Comment extends Model
 
     public function replies() {
         return $this->hasMany(Comment::class, 'comment_id')->whereNotNull('comment_id');
+    }
+
+    public function votes () {
+        return $this->morphMany(Vote::class, 'voteable');
     }
 }
