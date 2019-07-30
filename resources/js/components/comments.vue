@@ -1,8 +1,9 @@
 <template>
     <div class="card mt-5 p-5">
-        <div class="form-inline my-4 w-full">
-            <input type="text" class="form-control form-control-sm w-80">
-            <button class="btn btn-sm btn-primary">
+        <div v-if="auth" class="form-inline my-4 w-full">
+            <input v-model="newComment" type="text" class="form-control form-control-sm w-80">
+        
+            <button class="btn btn-sm btn-primary" @click="addComment">
                 <small>Add comment</small>
             </button>
         </div>
@@ -15,8 +16,12 @@
                 </h6>
 
                 <small>{{ comment.body }}</small>
+                
+                <div class="d-flex">
+                    <votes :default_votes="comment.votes" :entity_id="comment.id" :entity_owner="comment.user.id"></votes>
+                    <button class="btn btn-sm btn-default ml-2">Reply</button>
+                </div>
 
-                <votes :default_votes="comment.votes" :entity_id="comment.id" :entity_owner="comment.user.id"></votes>
                 <replies :comment="comment"></replies>
             </div>
 
@@ -45,10 +50,17 @@
             this.fetchComments()
         },
 
+        computed: {
+            auth() {
+                return __auth()
+            }
+        },
+
         data: () => ({
             comments: {
                 data: []
-            }
+            },
+            newComment: ''
         }),
 
         methods: {
@@ -57,14 +69,28 @@
                 const url = this.comments.next_page_url ? this.comments.next_page_url :
                     `/videos/${this.video.id}/comments`
 
-                axios.get(url).then(({
-                    data
-                }) => {
+                axios.get(url).then(({ data }) => {
                     this.comments = {
                         ...data,
                         data: [
                             ...this.comments.data,
                             ...data.data
+                        ]
+                    }
+                })
+            },
+
+            addComment() {
+                if (!this.newComment) return
+
+                axios.post(`/comments/${this.video.id}`, {
+                    body: this.newComment
+                }).then(({ data }) => {
+                        this.comments = {
+                        ...this.comments,
+                        data: [
+                            data,
+                            ...this.comments.data
                         ]
                     }
                 })

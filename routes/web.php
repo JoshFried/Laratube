@@ -33,6 +33,7 @@ Route::get('comments/{comment}/replies', [CommentController::class, 'show']);
 
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::post('comments/{video}', [CommentController::class, 'store']); 
     Route::post('votes/{entityId}/{type}', [VoteController::class, 'vote']);
     Route::get('channels/{channel}/videos', [UploadVideoController::class, 'index'])->name('channel.upload');
     Route::post('channels/{channel}/videos', [UploadVideoController::class, 'store']);
