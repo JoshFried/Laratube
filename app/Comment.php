@@ -5,8 +5,17 @@ namespace Laratube;
 
 class Comment extends Model
 {
+
     //tells laravel which relationships to EAGER load
     protected $with = ['user'];
+
+    protected $appends = ['repliesCount'];
+
+
+    public function getRepliesCountAttribute() {
+        return $this->replies->count();
+    }
+
 
     public function video() {
         return $this->belongsTo(Video::class);

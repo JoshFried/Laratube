@@ -5,17 +5,10 @@
 use Laratube\Model;
 use Faker\Generator as Faker;
 use Laratube\Video;
+use Laratube\Channel;
 
 $factory->define(Video::class, function (Faker $faker) {
     return [
-        
-        // $table->uuid('channel_id');
-        // $table->bigInteger('views')->default(0);
-        // $table->string('thumbnail')->nullable(); 
-        // $table->integer('percentage')->nullable();
-        // $table->string('title')->nullable();
-        // $table->text('description')->nullable();
-        // $table->string('path');
         'channel_id' => function() {
             return factory(Channel::class)->create()->id;
         }, 

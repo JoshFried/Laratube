@@ -6,6 +6,7 @@ use Laratube\Model;
 use Faker\Generator as Faker;
 use Laratube\Comment;
 use Laratube\User;
+use Laratube\Video;
 
 $factory->define(Comment::class, function (Faker $faker) {
     return [

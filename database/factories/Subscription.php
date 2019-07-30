@@ -17,3 +17,4 @@ $factory->define(Subscription::class, function (Faker $faker) {
         }, 
     ];
 });
+
