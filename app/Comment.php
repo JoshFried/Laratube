@@ -5,6 +5,9 @@ namespace Laratube;
 
 class Comment extends Model
 {
+    //tells laravel which relationships to EAGER load
+    protected $with = ['user'];
+
     public function video() {
         return $this->belongsTo(Video::class);
     }
