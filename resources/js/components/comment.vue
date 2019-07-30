@@ -11,17 +11,18 @@
 
             <div class="d-flex">
                 <votes :default_votes="comment.votes" :entity_id="comment.id" :entity_owner="comment.user.id"></votes>
-                <button @click="addingReply = !addingReply" class="btn btn-sm ml-2" :class=" { 'btn-default': !addingReply, 'btn-danger' : addingReply }">
+                <button @click="addingReply = !addingReply" class="btn btn-sm ml-2"
+                    :class=" { 'btn-default': !addingReply, 'btn-danger' : addingReply }">
                     {{ addingReply ? 'Cancel' : 'Reply' }}
                 </button>
             </div>
             <div v-if="addingReply" class="form-inline my-4 w-full">
-                <input type="text" class="form-control form-control-sm w-80">
-                <button class="btn btn-sm btn-primary">
+                <input v-model="body" type="text" class="form-control form-control-sm w-80">
+                <button @click="addReply" class="btn btn-sm btn-primary">
                     <small>Reply</small>
                 </button>
             </div>
-            <replies :comment="comment"></replies>
+            <replies ref="replies" :comment="comment"></replies>
         </div>
 
     </div>
@@ -41,7 +42,8 @@
 
         data() {
             return {
-                addingReply: false
+                addingReply: false,
+                body: ''
             }
         },
 
@@ -49,8 +51,29 @@
             comment: {
                 required: true,
                 default: () => ({})
+            },
+
+            video: {
+                required: true,
+                default: () => ({})
             }
-        }
+        },
+
+        methods: {
+            addReply() {
+
+                if (! this.body) return
+                
+                axios.post(`/comments/${this.video.id}`, {
+                    comment_id: this.comment.id, 
+                    body: this.body
+                }).then(({ data }) => {
+                    this.body = '',
+                    this.addingReply = false,
+                    this.$refs.replies.addReply(data)
+                })
+            }
+        },
     }
 
 </script>
