@@ -119,7 +119,11 @@ export default {
 
     methods: {
         vote(type) { 
-            if (__auth() && __auth().id === this.entity_owner) {
+                        if(!__auth()) {
+                return alert("Please login to vote")
+            }
+
+            if (__auth().id === this.entity_owner) {
                 return alert('You cant vote on this video')
             } 
             if ((type === 'up' && this.upvoted)|| (type === 'down' && this.downvoted)) return

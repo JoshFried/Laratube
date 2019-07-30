@@ -1926,7 +1926,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     vote: function vote(type) {
       var _this = this;
 
-      if (__auth() && __auth().id === this.entity_owner) {
+      if (!__auth()) {
+        return alert("Please login to vote");
+      }
+
+      if (__auth().id === this.entity_owner) {
         return alert('You cant vote on this video');
       }
 
